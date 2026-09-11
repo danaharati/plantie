@@ -92,6 +92,8 @@
   --space-button-padding-x: 56.62px;
   --space-bottom-nav-gap: 100px;
   --space-bottom-nav-padding: 47px 100px;
+  --space-shelf-top: 130px;         /* raw value as originally coded - kept for reference, see .shelves comment below */
+  --space-shelf-gap: 150px;         /* raw value as originally coded - kept for reference, see .shelves comment below */
 
   /* ---------- Spacing SCALED (÷2.3846, for this 360-390px build) ---------- */
   --space-card-gap-s: 10px;
@@ -103,6 +105,8 @@
   --space-button-padding-y-s: 10px;
   --space-button-padding-x-s: 24px;
   --space-bottom-nav-padding-s: 14px 20px;
+  --space-shelf-top-s: 110px;       /* not a scaled copy of the raw value - see .shelves comment below */
+  --space-shelf-gap-s: 60px;        /* not a scaled copy of the raw value - see .shelves comment below */
 
   /* ---------- Layout extensions (not in the design-token doc; added for this build) ---------- */
   --app-max-width: 480px;
@@ -336,18 +340,62 @@ h1, h2, h3, p { margin: 0; }
 .today-card[hidden] { display: none; }
 
 /* ---------- Home: shelves ---------- */
-.shelves { padding: 130px 0 12px; }
+/* 2026-09-11, tuned again same day after user feedback on the live site:
+   these two (--space-shelf-top-s / --space-shelf-gap-s) and .shelf-plants's
+   `bottom` percentage are NOT a simple "raw Figma px -> divide by 2.3846"
+   case like the rest of this file's SCALED block. .shelf-plants sits each
+   plant image's bottom edge at `bottom: <this%>` of the row's own height,
+   and a plant image's rendered height is driven by its own PNG's aspect
+   ratio (sized by width only, flex: 0 0 38%) - not by the row height. Tall
+   illustrations (yucca is the worst of the current 30) end up extending
+   well above their own row. So this spacing has to cover that image
+   overflow, not just "the Figma padding, scaled down".
+   History: naive ÷2.3846 (55px/63px) left far too little room, plants
+   visibly overlapped the "today's tasks" card and the shelf above. A
+   first correction (140px/90px, bottom:65%) fixed the overlap, verified
+   with Playwright against a worst-case render (all 30 PLANT_DATA plants
+   seeded into plantieMyPlants at once, since the default 9 include yucca
+   but not necessarily the worst combination) - but the user then said, on
+   the live site with just the default 9 plants, that the pots looked
+   like they were floating above the shelf board's surface and asked for
+   them to sit lower, and for the gap between shelves to shrink further.
+   Lowered `bottom` from 65% to 50% (moves each pot's anchor point down
+   within its row, closer to the shelf board's visible front surface
+   instead of its back/top edge) and shrank --space-shelf-top-s to 110px
+   and --space-shelf-gap-s to 60px. Re-verified with Playwright screenshots
+   both for the default 9-plant set and the full 30-plant worst case at
+   these tighter values - pots visibly rest on the board in both, and even
+   in the worst case no plant image visibly overlaps the shelf above it or
+   the "today's tasks" card.
+   2026-09-11, same day, one more round: user confirmed the row-to-row gap
+   (--space-shelf-top-s / --space-shelf-gap-s) was now right, but said the
+   pots themselves sat too low - looked like they were below the shelf
+   surface instead of standing on it. Raised `bottom` from 50% to 58%
+   (moves each pot's anchor point back up, without touching the row
+   spacing that was just confirmed correct). Tested 55/58/60% visually
+   against her actual screenshot (default 9 plants) - 58% was the first
+   value where every pot's base clearly sits on top of the board rather
+   than behind/below its front edge. Re-verified the 30-plant worst case
+   at 58% (same method as above) - still no plant image overlaps the shelf
+   above it or the "today's tasks" card, even for the tallest illustrations
+   (dragon tree, yucca, dieffenbachia). If more/taller plant illustrations
+   are added later, or spacing needs another pass, re-measure worst-case
+   overflow the same way (Playwright, all plants seeded into
+   plantieMyPlants at once, screenshot and visually inspect - bounding-box
+   math alone is misleading here because the PNGs carry transparent
+   margins) before changing these further. */
+.shelves { padding: var(--space-shelf-top-s) 0 12px; }
 .shelf-row {
   position: relative;
   margin-inline: 20px;
-  margin-bottom: 150px;
+  margin-bottom: var(--space-shelf-gap-s);
 }
 .shelf-row:last-child { margin-bottom: 20px; }
 .shelf-row .shelf-bg { width: 100%; display: block; }
 .shelf-plants {
   position: absolute;
   inset-inline: 0;
-  bottom: 65%;
+  bottom: 58%;
   display: flex;
   align-items: flex-end;
   /* Plants fill the shelf left-to-right in the order they were added
@@ -378,6 +426,16 @@ h1, h2, h3, p { margin: 0; }
 }
 .shelf-plants .plant-slot:active { transform: scale(0.96); }
 .shelf-plants img { width: 100%; height: auto; display: block; }
+/* 2026-09-11: plant-prayer-plant.png (unlike every other plant illustration)
+   has a real transparent margin below the pot itself (~8-9% of the image's
+   own height, vs under 1% for the rest) - see the comment above the
+   .shelves rule for how these illustrations are positioned. That extra
+   margin alone made this one plant look like it was floating above the
+   shelf board even though the shared `bottom: 58%` anchor is the same for
+   every plant. Nudged just this image down to compensate, without
+   touching the shared anchor (which the user confirmed looks right for
+   every other plant). */
+.shelf-plants img[src$="plant-prayer-plant.png"] { transform: translateY(9%); }
 .badge-water {
   position: absolute;
   bottom: 15%;
