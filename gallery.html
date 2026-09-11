@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plantie - גלריה</title>
+<meta name="description" content="בחירת תמונת צמח קיימת מהגלריה לזיהוי ב-Plantie.">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="app-shell camera-shell">
+
+  <img class="camera-photo-bg blurred" src="assets/images/gallery-prayer-plant.jpg" alt="תצוגת מצלמה חיה">
+
+  <section class="gallery-sheet" aria-label="גלריית תמונות">
+    <div class="gallery-sheet-head">
+      <a class="gallery-close" href="camera.html" aria-label="סגירת גלריה וחזרה למצלמה">
+        <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+      </a>
+      <h2>גלריה</h2>
+    </div>
+
+    <!-- 33 התמונות המאורכות (תמונה 4) של הצמחים מתוך Assets/תמונות צמחים,
+         אחת לכל צמח. data-target כבר מצביע על כרטיסיית הצמח שלה כשזו קיימת;
+         "צמח תפילה" מפנה ל-plant.html (התבנית הכללית, שכבר מכילה את תוכנו
+         האמיתי); שאר הצמחים שעדיין אין להם כרטיסייה משלהם מפנים ל-
+         plant-not-found.html (מסך "מבוי סתום" - ראו script.js) - ואז כשתיבנה
+         לצמח כרטיסייה, רק data-target כאן צריך להתעדכן, בלי לגעת במבנה. -->
+    <div class="gallery-grid" data-gallery-grid>
+      <button type="button" data-photo="assets/images/gallery-aloe-vera.jpg" data-target="plant-aloe-vera.html">
+        <img src="assets/images/gallery-aloe-vera.jpg" alt="אלוורה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-anthurium.jpg" data-target="plant-anthurium.html">
+        <img src="assets/images/gallery-anthurium.jpg" alt="אנטוריום">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-areca-palm.jpg" data-target="plant-areca-palm.html">
+        <img src="assets/images/gallery-areca-palm.jpg" alt="דקל אריקה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-birds-nest-fern.jpg" data-target="plant-not-found.html">
+        <img src="assets/images/gallery-birds-nest-fern.jpg" alt="שרך קן הציפור">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-boston-fern.jpg" data-target="plant-boston-fern.html">
+        <img src="assets/images/gallery-boston-fern.jpg" alt="שרך בוסטון">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-calathea.jpg" data-target="plant-calathea.html">
+        <img src="assets/images/gallery-calathea.jpg" alt="קלתאה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-chinese-evergreen.jpg" data-target="plant-chinese-evergreen.html">
+        <img src="assets/images/gallery-chinese-evergreen.jpg" alt="אגלאונמה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-christmas-cactus.jpg" data-target="plant-not-found.html">
+        <img src="assets/images/gallery-christmas-cactus.jpg" alt="קקטוס חג המולד">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-croton.jpg" data-target="plant-croton.html">
+        <img src="assets/images/gallery-croton.jpg" alt="קרוטון">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-dieffenbachia.jpg" data-target="plant-dieffenbachia.html">
+        <img src="assets/images/gallery-dieffenbachia.jpg" alt="דיפנבכיה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-dragon-tree.jpg" data-target="plant-dragon-tree.html">
+        <img src="assets/images/gallery-dragon-tree.jpg" alt="דרצנה מרגינטה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-ficus-benjamina.jpg" data-target="plant-ficus-benjamina.html">
+        <img src="assets/images/gallery-ficus-benjamina.jpg" alt="פיקוס בנימינה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-ficus-ginseng.jpg" data-target="plant-not-found.html">
+        <img src="assets/images/gallery-ficus-ginseng.jpg" alt="פיקוס מיקרוקרפה ג'ינסנג">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-fiddle-leaf-fig.jpg" data-target="plant-fiddle-leaf-fig.html">
+        <img src="assets/images/gallery-fiddle-leaf-fig.jpg" alt="פיקוס כינורי">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-golden-pothos.jpg" data-target="plant-golden-pothos.html">
+        <img src="assets/images/gallery-golden-pothos.jpg" alt="פוטוס">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-heartleaf-philodendron.jpg" data-target="plant-philodendron.html">
+        <img src="assets/images/gallery-heartleaf-philodendron.jpg" alt="פילודנדרון לבבי">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-jade-plant.jpg" data-target="plant-jade-plant.html">
+        <img src="assets/images/gallery-jade-plant.jpg" alt="עץ השפע">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-kalanchoe.jpg" data-target="plant-kalanchoe.html">
+        <img src="assets/images/gallery-kalanchoe.jpg" alt="קלנכואה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-monstera-adansonii.jpg" data-target="plant-monstera-adansonii.html">
+        <img src="assets/images/gallery-monstera-adansonii.jpg" alt="מונסטרה אדנסוני">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-monstera-deliciosa.jpg" data-target="plant-monstera-deliciosa.html">
+        <img src="assets/images/gallery-monstera-deliciosa.jpg" alt="מונסטרה דליסיוסה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-peace-lily.jpg" data-target="plant-peace-lily.html">
+        <img src="assets/images/gallery-peace-lily.jpg" alt="שושן השלום">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-peperomia.jpg" data-target="plant-peperomia.html">
+        <img src="assets/images/gallery-peperomia.jpg" alt="פפרומיה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-phalaenopsis-orchid.jpg" data-target="plant-phalaenopsis-orchid.html">
+        <img src="assets/images/gallery-phalaenopsis-orchid.jpg" alt="סחלב פלנופסיס">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-pilea-peperomioides.jpg" data-target="plant-pilea-peperomioides.html">
+        <img src="assets/images/gallery-pilea-peperomioides.jpg" alt="פילאה פפרומיואידס">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-prayer-plant.jpg" data-target="plant.html">
+        <img src="assets/images/gallery-prayer-plant.jpg" alt="צמח תפילה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-rubber-plant.jpg" data-target="plant-rubber-plant.html">
+        <img src="assets/images/gallery-rubber-plant.jpg" alt="פיקוס גומי">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-snake-plant.jpg" data-target="plant-snake-plant.html">
+        <img src="assets/images/gallery-snake-plant.jpg" alt="סנסיוריה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-spider-plant.jpg" data-target="plant-spider-plant.html">
+        <img src="assets/images/gallery-spider-plant.jpg" alt="צמח העכביש">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-string-of-pearls.jpg" data-target="plant-string-of-pearls.html">
+        <img src="assets/images/gallery-string-of-pearls.jpg" alt="סביון הכדורים">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-stromanthe.jpg" data-target="plant-stromanthe.html">
+        <img src="assets/images/gallery-stromanthe.jpg" alt="סטרומנטה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-wax-plant-hoya.jpg" data-target="plant-hoya.html">
+        <img src="assets/images/gallery-wax-plant-hoya.jpg" alt="הויה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-yucca-plant.jpg" data-target="plant-yucca.html">
+        <img src="assets/images/gallery-yucca-plant.jpg" alt="יוקה">
+      </button>
+      <button type="button" data-photo="assets/images/gallery-zz-plant.jpg" data-target="plant-zz-plant.html">
+        <img src="assets/images/gallery-zz-plant.jpg" alt="זמיוקולקס">
+      </button>
+    </div>
+  </section>
+
+</main>
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plantie - הצמח נמצא</title>
+<meta name="description" content="הצמח זוהה בהצלחה ב-Plantie.">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="app-shell">
+
+  <!-- תלוי-נתונים: script.js קורא את פרמטר ה-target מה-URL וממלא כאן את
+       האיור והשם הנכונים (טבלת PLANT_DATA). ברירת המחדל בהמשך (כשאין
+       התאמה, כמו צילום ישיר מהמצלמה או אחד מהצמחים שעדיין ללא כרטיסייה
+       משלו) נשארת צמח תפילה, בדיוק כמו התוכן הכתוב כאן בסטטי. -->
+  <div class="identify-reveal">
+    <div class="identify-reveal-card">
+      <img src="assets/images/plant-prayer-plant.png" alt="צמח תפילה" data-identify-img>
+      <h1 data-identify-name-he>צמח תפילה</h1>
+      <p data-identify-name-en>Prayer Plant</p>
+    </div>
+  </div>
+
+</main>
+<script src="script.js" defer></script>
+</body>
+</html>

@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Plantie - מזהים את הצמח</title>
+<meta name="description" content="מיקום הצמח בפריים לזיהוי אוטומטי ב-Plantie.">
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<main class="app-shell camera-shell">
+
+  <img class="camera-photo-bg blurred" src="assets/images/photo-prayer-plant-3.jpg" alt="תצוגת מצלמה חיה">
+
+  <div class="camera-top-bar">
+    <a class="camera-close" href="home.html" aria-label="סגור מצלמה וחזרה לדף הבית">
+      <svg class="icon-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="square" stroke-linejoin="miter" aria-hidden="true"><line x1="5" y1="5" x2="19" y2="19"/><line x1="19" y1="5" x2="5" y2="19"/></svg>
+    </a>
+  </div>
+
+  <div class="camera-frame above-action-bar" aria-hidden="true">
+    <span class="corner tl"></span>
+    <span class="corner tr"></span>
+    <span class="corner bl"></span>
+    <span class="corner br"></span>
+  </div>
+
+  <p class="camera-caption above-action-bar">מקם את הצמח בתוך המסגרת</p>
+
+  <div class="camera-action-bar">
+    <a class="camera-gallery-btn" href="gallery.html" aria-label="פתיחת גלריה">
+      <img src="assets/images/gallery-prayer-plant.jpg" alt="">
+    </a>
+    <button class="camera-shutter" type="button" data-camera-shutter aria-label="צילום"></button>
+  </div>
+
+</main>
+<script src="script.js" defer></script>
+</body>
+</html>

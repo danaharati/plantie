@@ -1,0 +1,1000 @@
+/*
+  Plantie - Static site stylesheet
+  Design tokens copied from the project's styles/tokens.css (source of truth:
+  docs/DESIGN_SYSTEM_TOKENS.md). Do not hand-edit color/type/radius values here - change them in the design system doc first, then mirror the change into both files.
+
+  Two additions on top of the original tokens, clearly marked below:
+  1. A scaled spacing set - the Figma frames were measured at a 930px canvas,
+     this build targets 360-390px mobile, so every raw spacing value is divided
+     by the documented scale factor (930/390 ≈ 2.3846) and rounded to a clean pixel.
+  2. A small "layout extensions" block for things the token doc doesn't cover
+     (shadows, transitions, app-shell max-width) needed to assemble a real page.
+*/
+
+:root {
+  /* ---------- Color / Primary ---------- */
+  --color-primary-dark-green: #073B1B;
+  --color-primary-dark-green-80: #396249;
+  --color-primary-dark-green-60: #6A8976;
+  --color-primary-dark-green-40: #9CB1A4;
+  --color-primary-dark-green-20: #CDD8D1;
+
+  --color-primary-lime-green: #BBF75A;
+  --color-primary-lime-green-80: #C9F97B;
+  --color-primary-lime-green-60: #D6FA9C;
+  --color-primary-lime-green-40: #E4FCBD;
+  --color-primary-lime-green-20: #F1FDDE;
+
+  --color-primary-orange: #FF7A35;
+  --color-primary-orange-80: #FF955D;
+  --color-primary-orange-60: #FFAF86;
+  --color-primary-orange-40: #FFCAAE;
+  --color-primary-orange-20: #FFE4D7;
+
+  --color-primary-purple: #B9A3FF;
+  --color-primary-purple-80: #C7B5FF;
+  --color-primary-purple-60: #D5C8FF;
+  --color-primary-purple-40: #E3DAFF;
+  --color-primary-purple-20: #F1EDFF;
+
+  --color-primary-cream: #F3F1ED;
+
+  /* ---------- Color / Neutral ---------- */
+  --color-neutral-black: #1F1F1F;
+  --color-neutral-gray: #8F8F8F;
+  --color-neutral-light-gray: #D9D9D9;
+  --color-neutral-off-white: #F2F2F2;
+  --color-neutral-white: #FFFFFF;
+
+  /* ---------- Color / Semantic ---------- */
+  --color-semantic-success: #4CAF50;
+  --color-semantic-warning: #FFB34D;
+  --color-semantic-info: #2196F3;
+  --color-semantic-error: #F44336;
+
+  /* ---------- Typography ---------- */
+  /* "Google Sans" is not a public webfont and has no Hebrew glyphs; Rubik (loaded
+     in <head>) is the working stand-in for this build - see build notes in README. */
+  --font-family-base: "Google Sans", "Google Sans Flex", "Rubik", -apple-system, "Segoe UI", Arial, sans-serif;
+
+  --type-display-size: 32px;
+  --type-display-weight: 700;
+  --type-h1-size: 24px;
+  --type-h1-weight: 500;
+  --type-h2-size: 20px;
+  --type-h2-weight: 500;
+  --type-h3-size: 18px;
+  --type-h3-weight: 500;
+  --type-body-size: 16px;
+  --type-body-weight: 400;
+  --type-body-small-size: 14px;
+  --type-body-small-weight: 400;
+  --type-caption-size: 12px;
+  --type-caption-weight: 400;
+  --type-button-size: 16px;
+  --type-button-weight: 500;
+
+  /* ---------- Radius ---------- */
+  --radius-none: 0px;
+  --radius-card: 30px;             /* raw Figma value (930px canvas) - do not use directly at mobile scale */
+  --radius-card-scaled: 12.6px;    /* 30 / 2.3846 - use this one at 360-390px */
+  --radius-full: 9999px;
+
+  /* ---------- Spacing (raw, 930px canvas - kept for reference) ---------- */
+  --space-card-gap: 25px;
+  --space-card-padding-top: 0px;
+  --space-card-padding-x: 35px;
+  --space-card-padding-bottom: 30px;
+  --space-input-gap: 28.7px;
+  --space-input-padding: 30px 50px;
+  --space-button-gap: 21.78px;
+  --space-button-padding-y: 23.96px;
+  --space-button-padding-x: 56.62px;
+  --space-bottom-nav-gap: 100px;
+  --space-bottom-nav-padding: 47px 100px;
+
+  /* ---------- Spacing SCALED (÷2.3846, for this 360-390px build) ---------- */
+  --space-card-gap-s: 10px;
+  --space-card-padding-x-s: 15px;
+  --space-card-padding-bottom-s: 13px;
+  --space-input-gap-s: 12px;
+  --space-input-padding-s: 13px 21px;
+  --space-button-gap-s: 9px;
+  --space-button-padding-y-s: 10px;
+  --space-button-padding-x-s: 24px;
+  --space-bottom-nav-padding-s: 14px 20px;
+
+  /* ---------- Layout extensions (not in the design-token doc; added for this build) ---------- */
+  --app-max-width: 480px;
+  --shadow-card: 0 2px 10px rgba(7, 59, 27, 0.08);
+  --shadow-sheet: 0 -6px 24px rgba(7, 59, 27, 0.12);
+  --transition-base: 160ms ease;
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html, body { height: 100%; }
+body {
+  margin: 0;
+  font-family: var(--font-family-base);
+  font-size: var(--type-body-size);
+  font-weight: var(--type-body-weight);
+  color: var(--color-neutral-black);
+  background-color: var(--color-primary-cream);
+  -webkit-font-smoothing: antialiased;
+  /* Site-wide rule: never leave a single orphan word alone on a line - every wrapped line keeps at least two words. Inherited by all text. */
+  text-wrap: pretty;
+}
+ul { list-style: none; margin: 0; padding: 0; }
+a { color: inherit; text-decoration: none; }
+button { font-family: inherit; cursor: pointer; }
+input, select, button { font-size: var(--type-body-size); }
+img { max-width: 100%; display: block; }
+h1, h2, h3, p { margin: 0; }
+
+/* ---------- App shell ---------- */
+.app-shell {
+  max-width: var(--app-max-width);
+  margin-inline: auto;
+  min-height: 100svh;
+  position: relative;
+  background-image: url("assets/images/bg-gradient.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top center;
+  overflow-x: hidden;
+}
+.app-shell.has-bottom-nav { padding-bottom: calc(96px + var(--safe-bottom)); }
+.app-shell.flat-bg { background-image: none; background-color: var(--color-primary-cream); }
+.app-shell.push-footer { display: flex; flex-direction: column; }
+.push-footer .social-row { margin-top: auto; padding-bottom: 32px; }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0; padding: 0; margin: -1px;
+}
+
+.icon { width: 24px; height: 24px; flex-shrink: 0; }
+.icon-sm { width: 18px; height: 18px; }
+
+/* ---------- Top app bar ---------- */
+.top-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 20px;
+  border-radius: var(--radius-none);
+}
+.top-bar .logo-img { height: 28px; width: auto; }
+.top-bar-btn {
+  background: none;
+  border: none;
+  padding: 6px;
+  color: var(--color-primary-dark-green);
+  display: inline-flex;
+}
+.top-bar.center-logo { justify-content: center; position: relative; }
+.top-bar.center-logo .top-bar-btn.menu { position: absolute; inset-inline-start: 12px; }
+.top-bar.with-back { justify-content: space-between; }
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-button-gap-s);
+  width: 100%;
+  padding: var(--space-button-padding-y-s) var(--space-button-padding-x-s);
+  border-radius: var(--radius-full);
+  font-size: var(--type-button-size);
+  font-weight: var(--type-button-weight);
+  border: 1px solid transparent;
+  transition: transform var(--transition-base), opacity var(--transition-base);
+  min-height: 48px;
+}
+.btn:active { transform: scale(0.98); }
+.btn-primary {
+  background: var(--color-primary-dark-green);
+  color: var(--color-neutral-white);
+}
+.btn-secondary {
+  background: var(--color-primary-lime-green-20);
+  border-color: var(--color-primary-dark-green-20);
+  color: var(--color-primary-dark-green);
+}
+.btn-lime {
+  background: var(--color-primary-lime-green);
+  color: var(--color-primary-dark-green);
+  font-weight: 700;
+}
+.btn-outline {
+  background: transparent;
+  border-color: var(--color-primary-dark-green);
+  color: var(--color-primary-dark-green);
+}
+
+/* ---------- Inputs ---------- */
+.field {
+  width: 100%;
+  padding: var(--space-input-padding-s);
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-primary-dark-green-40);
+  background: var(--color-neutral-white);
+  color: var(--color-neutral-black);
+  text-align: right;
+  direction: rtl;
+}
+.field::placeholder { color: var(--color-primary-dark-green-60); }
+.field:focus { outline: 2px solid var(--color-primary-dark-green); outline-offset: 2px; }
+.field-group { display: flex; flex-direction: column; gap: var(--space-input-gap-s); }
+
+.search-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-field .field { padding-inline-start: 44px; text-align: right; }
+.search-field .icon { position: absolute; inset-inline-start: 16px; color: var(--color-primary-dark-green-60); }
+
+.symptom-select {
+  border: 1px solid var(--color-primary-dark-green-40);
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-white);
+  overflow: hidden;
+}
+.symptom-select.is-open { border-radius: var(--radius-card-scaled); }
+.symptom-select-toggle {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: var(--space-input-padding-s);
+  background: none;
+  border: none;
+  color: var(--color-primary-dark-green);
+  font-family: inherit;
+}
+.symptom-chevron { flex-shrink: 0; transition: transform 0.2s ease; }
+.symptom-select.is-open .symptom-chevron { transform: rotate(180deg); }
+.symptom-select-value { flex: 1; text-align: right; color: var(--color-primary-dark-green-60); }
+.symptom-select.has-value .symptom-select-value { color: var(--color-primary-dark-green); }
+.symptom-select-list { list-style: none; }
+.symptom-select-list li {
+  padding: var(--space-input-padding-s);
+  text-align: right;
+  color: var(--color-primary-dark-green-80);
+}
+.symptom-select-list li.is-active { background: var(--color-primary-lime-green-20); color: var(--color-primary-dark-green); }
+
+/* ---------- Symptom explanation panel - appears below the dropdown only
+   once a symptom with an explanation is picked (plant.html "אבחון הבעיה") ---------- */
+.symptom-explanation {
+  margin-top: 10px;
+  color: var(--color-neutral-black);
+  font-size: var(--type-body-size);
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* ---------- Bottom navigation ---------- */
+.bottom-nav {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  max-width: var(--app-max-width);
+  margin-inline: auto;
+  background: var(--color-primary-dark-green);
+  border-start-start-radius: var(--radius-card-scaled);
+  border-start-end-radius: var(--radius-card-scaled);
+  padding: var(--space-bottom-nav-padding-s);
+  padding-bottom: calc(14px + var(--safe-bottom));
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  z-index: 20;
+}
+.bottom-nav a {
+  color: var(--color-neutral-white);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 6px;
+  border-radius: var(--radius-full);
+}
+.bottom-nav .icon { width: 32px; height: 32px; }
+.bottom-nav a.is-active { color: var(--color-neutral-white); }
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--color-neutral-white);
+  border-radius: var(--radius-card-scaled);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- Home: today card ---------- */
+.today-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 18px;
+  margin: 16px 20px 20px;
+}
+.today-card .today-text { text-align: right; }
+.today-card h2 { font-size: var(--type-h3-size); font-weight: var(--type-h3-weight); color: var(--color-primary-dark-green); }
+.today-card p { font-size: var(--type-body-small-size); color: var(--color-primary-dark-green-80); margin-top: 4px; }
+.today-card .chevron { color: var(--color-primary-dark-green); flex-shrink: 0; }
+/* .today-card sets display:flex above, which (per CSS cascade rules) beats
+   the browser's own [hidden]{display:none} default - same reason
+   .plant-card[hidden] exists below. Needed so script.js can actually hide
+   this card when no "my plants" currently need water. */
+.today-card[hidden] { display: none; }
+
+/* ---------- Home: shelves ---------- */
+.shelves { padding: 130px 0 12px; }
+.shelf-row {
+  position: relative;
+  margin-inline: 20px;
+  margin-bottom: 150px;
+}
+.shelf-row:last-child { margin-bottom: 20px; }
+.shelf-row .shelf-bg { width: 100%; display: block; }
+.shelf-plants {
+  position: absolute;
+  inset-inline: 0;
+  bottom: 65%;
+  display: flex;
+  align-items: flex-end;
+  /* Plants fill the shelf left-to-right in the order they were added
+     (first added = leftmost slot), instead of centering a partial row -
+     requested explicitly, so this is forced regardless of the site's RTL
+     reading direction (see the direction:rtl reset on .plant-slot below,
+     which keeps each slot's own content, like the water badge, unaffected). */
+  direction: ltr;
+  justify-content: flex-start;
+  gap: 0%;
+  /* A full row of 3 pots is wider than the space between the padding edges
+     (3 x 38% > 80%), so it always overflows a little either way - shifting
+     the start/end padding instead of splitting 10%/10% evenly re-centers
+     that overflow on the shelf itself (matches how it looked before this
+     row switched from centering to left-to-right filling), while a partial
+     row still starts a touch left of the old centered position, as
+     requested. */
+  padding-inline-start: 4.4%;
+  padding-inline-end: 15.6%;
+}
+.shelf-plants .plant-slot {
+  position: relative;
+  display: block;
+  flex: 0 0 38%;
+  direction: rtl;
+  border-radius: var(--radius-card-scaled);
+  transition: transform var(--transition-base);
+}
+.shelf-plants .plant-slot:active { transform: scale(0.96); }
+.shelf-plants img { width: 100%; height: auto; display: block; }
+.badge-water {
+  position: absolute;
+  bottom: 15%;
+  inset-inline-start: 24%;
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-orange);
+  color: var(--color-neutral-white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ---------- My plants: chips ---------- */
+.chip-row {
+  display: flex;
+  gap: 8px;
+  padding: 4px 20px 16px;
+  overflow-x: auto;
+}
+.chip {
+  flex-shrink: 0;
+  padding: 8px 18px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--color-primary-dark-green-40);
+  background: var(--color-neutral-white);
+  color: var(--color-primary-dark-green);
+  font-size: var(--type-body-small-size);
+  white-space: nowrap;
+}
+.chip.is-active { background: var(--color-primary-lime-green); border-color: var(--color-primary-lime-green); font-weight: 500; }
+.chip.chip-add { width: 40px; padding: 8px; text-align: center; }
+
+/* ---------- My plants: grid ---------- */
+.plant-grid {
+  column-count: 2;
+  column-gap: 14px;
+  padding: 0 20px 24px;
+}
+.plant-card {
+  border-radius: var(--radius-card-scaled);
+  padding: 16px 12px 14px;
+  text-align: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  border: none;
+  background: var(--color-primary-lime-green-20);
+  color: inherit;
+  break-inside: avoid;
+  margin-bottom: 14px;
+  width: 100%;
+}
+.plant-card.needs-water { background: var(--color-primary-orange-20); }
+.plant-card[hidden] { display: none; }
+.plant-card img { width: 78%; height: auto; }
+.plant-card .plant-name { font-size: var(--type-body-size); font-weight: 600; color: var(--color-primary-dark-green); }
+.plant-card .plant-meta { font-size: var(--type-caption-size); color: var(--color-primary-dark-green-80); }
+.plant-card .badge-water { top: 10px; inset-inline-end: 10px; inset-inline-start: auto; bottom: auto; width: 26px; height: 26px; }
+
+/* ---------- Home + My plants: empty states ----------
+   Shown instead of the shelf/grid when "my plants" (script.js,
+   localStorage key plantieMyPlants) is empty - see renderHomeShelves /
+   renderPlantGrid. Matches Figma's home screen_2_empty (node 180:1090) and
+   my plants screen_3_empty (node 183:1255). Neither class sets its own
+   display, so the [hidden] attribute toggled by script.js works with no
+   extra override needed (unlike .today-card/.plant-card above). */
+.home-empty,
+.myplants-empty {
+  text-align: center;
+  padding: 40px 24px 0;
+}
+.home-empty h1,
+.myplants-empty h1 {
+  font-size: var(--type-display-size);
+  font-weight: 700;
+  color: var(--color-primary-dark-green);
+}
+.home-empty p,
+.myplants-empty p {
+  font-size: var(--type-h2-size);
+  font-weight: 400;
+  color: var(--color-primary-dark-green-80);
+  margin-top: 8px;
+}
+.home-empty-shelf { width: 100%; max-width: 420px; display: block; margin: 60px auto 0; }
+
+/* ---------- Camera screen ---------- */
+.camera-shell { height: 100svh; overflow: hidden; position: relative; background: var(--color-neutral-black); }
+.camera-photo-bg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+/* Used on camera.html and gallery.html, where the photo stands in for a
+   live camera feed (not yet a captured/chosen photo) - blurred like an
+   out-of-focus viewfinder. identify-loading.html shows the actual chosen
+   photo sharp, so it does not get this class. Scaled up slightly so the
+   blur doesn't reveal sharp edges at the frame border. */
+.camera-photo-bg.blurred {
+  filter: blur(6px);
+  transform: scale(1.08);
+}
+.camera-top-bar {
+  position: relative;
+  z-index: 2;
+}
+.camera-close {
+  /* Physical (not logical) positioning on purpose: a camera control overlay
+     stays in the same corner regardless of page direction, like a real
+     camera app - it should not mirror just because the site is RTL. */
+  position: absolute;
+  top: 18px;
+  left: 18px;
+  background: none;
+  border: none;
+  color: var(--color-neutral-white);
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,0.45));
+  width: 40px; height: 40px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.camera-frame {
+  position: absolute;
+  inset: 90px 24px 34%;
+  z-index: 2;
+  pointer-events: none;
+}
+/* camera.html's bottom UI is the action bar (fixed height), not the
+   auto-height identify sheet the base 34% offset above was tuned for. */
+.camera-frame.above-action-bar { inset: 90px 24px calc(152px + var(--safe-bottom)); }
+.corner {
+  position: absolute;
+  width: 34px; height: 34px;
+  border-color: var(--color-neutral-white);
+  border-style: solid;
+  border-width: 0;
+}
+.corner.tl { top: 0; inset-inline-start: 0; border-block-start-width: 4px; border-inline-start-width: 4px; border-start-start-radius: 10px; }
+.corner.tr { top: 0; inset-inline-end: 0; border-block-start-width: 4px; border-inline-end-width: 4px; border-start-end-radius: 10px; }
+.corner.bl { bottom: 0; inset-inline-start: 0; border-block-end-width: 4px; border-inline-start-width: 4px; border-end-start-radius: 10px; }
+.corner.br { bottom: 0; inset-inline-end: 0; border-block-end-width: 4px; border-inline-end-width: 4px; border-end-end-radius: 10px; }
+.camera-caption {
+  position: absolute;
+  bottom: calc(34% + 14px);
+  inset-inline: 0;
+  text-align: center;
+  color: var(--color-neutral-white);
+  font-weight: 600;
+  z-index: 2;
+  padding-inline: 20px;
+  text-shadow: 0 1px 6px rgba(0,0,0,0.5);
+}
+.camera-caption.above-action-bar { bottom: calc(166px + var(--safe-bottom)); }
+
+/* Bottom action bar (camera.html only): gallery-access thumbnail + shutter. */
+.camera-action-bar {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+  height: 128px;
+  background: rgba(0,0,0,0.55);
+  padding-bottom: var(--safe-bottom);
+}
+.camera-gallery-btn {
+  /* Physical positioning to match the camera control layout regardless of
+     page direction - see .camera-close note above. */
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 2px solid rgba(255,255,255,0.7);
+  display: block;
+}
+.camera-gallery-btn img { width: 100%; height: 100%; object-fit: cover; }
+.camera-shutter {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 72px;
+  height: 72px;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-white);
+  border: 4px solid rgba(255,255,255,0.35);
+  padding: 0;
+}
+.camera-shutter:active { background: var(--color-neutral-off-white); }
+
+.camera-sheet {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  z-index: 3;
+  background: var(--color-primary-cream);
+  border-start-start-radius: var(--radius-card-scaled);
+  border-start-end-radius: var(--radius-card-scaled);
+  box-shadow: var(--shadow-sheet);
+  padding: 32px 24px calc(28px + var(--safe-bottom));
+  text-align: center;
+}
+.camera-sheet .sparkle {
+  display: block;
+  width: 48px; height: 48px;
+  margin: 0 auto 12px;
+  animation: loading-spin-pulse 1.8s ease-in-out infinite;
+}
+.camera-sheet h2 { font-size: var(--type-h2-size); font-weight: var(--type-h2-weight); color: var(--color-neutral-black); margin-top: 12px; }
+.camera-sheet p { font-size: var(--type-body-small-size); color: var(--color-neutral-gray); margin-top: 8px; }
+@keyframes loading-spin-pulse {
+  0% { transform: rotate(0deg) scale(0.85); opacity: 0.75; }
+  50% { transform: rotate(180deg) scale(1.05); opacity: 1; }
+  100% { transform: rotate(360deg) scale(0.85); opacity: 0.75; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .camera-sheet .sparkle { animation: none; }
+}
+
+/* ---------- Gallery screen (gallery.html) ---------- */
+.gallery-sheet {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  top: 34%;
+  z-index: 3;
+  background: var(--color-primary-cream);
+  border-start-start-radius: var(--radius-card-scaled);
+  border-start-end-radius: var(--radius-card-scaled);
+  box-shadow: var(--shadow-sheet);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.gallery-sheet-head {
+  position: relative;
+  flex-shrink: 0;
+  padding: 20px 18px 12px;
+  text-align: center;
+}
+.gallery-sheet-head h2 { font-size: var(--type-h2-size); font-weight: var(--type-h2-weight); color: var(--color-neutral-black); }
+.gallery-close {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  background: none;
+  border: none;
+  color: var(--color-primary-dark-green);
+  width: 36px; height: 36px;
+  display: inline-flex; align-items: center; justify-content: center;
+}
+.gallery-grid {
+  flex: 1;
+  overflow-y: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  padding: 4px 18px calc(24px + var(--safe-bottom));
+}
+.gallery-grid button {
+  position: relative;
+  padding: 0;
+  padding-top: 100%; /* intrinsic-ratio trick for a 1:1 cell - CSS Grid's auto row-sizing
+                         under-computes the row track when height instead comes from
+                         `aspect-ratio` on the item, so rows end up too short and photos
+                         overlap into the row below; padding-top keyed off width sidesteps
+                         that grid track-sizing dependency entirely. */
+  height: 0;
+  border: none;
+  border-radius: var(--radius-card-scaled);
+  overflow: hidden;
+  background: var(--color-neutral-light-gray);
+}
+.gallery-grid img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Identify-result reveal screen (identify-result.html) ---------- */
+.identify-reveal {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.identify-reveal-card {
+  width: 100%;
+  max-width: 320px;
+  text-align: center;
+  animation: identify-reveal-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+.identify-reveal-card img { width: 220px; margin-inline: auto; }
+.identify-reveal-card h1 { font-size: var(--type-display-size); font-weight: 700; color: var(--color-primary-dark-green); margin-top: 20px; }
+.identify-reveal-card p { font-size: var(--type-h2-size); font-weight: var(--type-h2-weight); color: var(--color-primary-dark-green-60); margin-top: 4px; }
+@keyframes identify-reveal-in {
+  0% { opacity: 0; transform: scale(0.85) translateY(12px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .identify-reveal-card { animation: none; }
+}
+
+/* ---------- Plant not found screen (plant-not-found.html) ----------
+   Dead-end destination for gallery.html photos whose plant doesn't have
+   its own card yet (data-target="plant-not-found.html") - see script.js's
+   identify-loading timeout, which routes straight here instead of through
+   identify-result.html for those. Only two actions available: close (X)
+   back to home, or open the menu - no auto-forward, no plant page link. */
+.not-found-topbar { position: relative; z-index: 2; }
+.not-found-close,
+.not-found-menu {
+  position: absolute;
+  top: 18px;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: var(--color-primary-dark-green);
+}
+/* Physical (not logical) positioning on purpose - same reasoning as
+   .camera-close: these sit in fixed screen corners regardless of page
+   direction, they should not mirror just because the site is RTL. */
+.not-found-close { left: 18px; }
+.not-found-menu { right: 18px; }
+.not-found-content {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 24px;
+}
+.not-found-illustration { width: 170px; height: auto; margin-bottom: 20px; }
+.not-found-content h1 { font-size: var(--type-h1-size); font-weight: 700; color: var(--color-primary-dark-green); }
+.not-found-content p { font-size: var(--type-h2-size); font-weight: 400; color: var(--color-primary-dark-green-80); margin-top: 8px; }
+
+/* ---------- Plant detail screen ---------- */
+.plant-carousel { position: relative; }
+.carousel-track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+.carousel-track::-webkit-scrollbar { display: none; }
+.carousel-track img {
+  flex: 0 0 100%;
+  scroll-snap-align: start;
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+}
+.carousel-dots {
+  position: absolute;
+  bottom: 14px;
+  inset-inline: 0;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+.carousel-dots button {
+  width: 8px; height: 8px;
+  border-radius: var(--radius-full);
+  border: none;
+  background: rgba(255,255,255,0.6);
+  padding: 0;
+}
+.carousel-dots button.is-active { background: var(--color-primary-lime-green); width: 20px; }
+.plant-carousel .top-bar { position: absolute; top: 0; inset-inline: 0; z-index: 2; }
+.plant-carousel .top-bar-btn { background: none; color: var(--color-primary-dark-green); }
+.plant-carousel .top-bar[data-icon-tone="light"] .top-bar-btn { color: var(--color-neutral-white); }
+
+.plant-detail-body { padding: 20px 20px 28px; text-align: center; }
+.plant-detail-body h1 { font-size: var(--type-display-size); font-weight: var(--type-display-weight); color: var(--color-primary-dark-green); }
+.plant-detail-body .subtitle { font-size: var(--type-h2-size); font-weight: var(--type-h2-weight); color: var(--color-primary-dark-green-60); margin-top: 4px; }
+
+.stat-tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-top: 20px;
+}
+.stat-tile {
+  border-radius: var(--radius-card-scaled);
+  padding: 14px 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  box-shadow: var(--shadow-card);
+}
+.stat-tile.tint-green { background: var(--color-primary-lime-green-20); }
+.stat-tile.tint-purple { background: var(--color-primary-purple-40); }
+.stat-tile.tint-orange { background: var(--color-primary-orange-20); }
+.stat-tile .icon { width: 40px; height: 40px; }
+.stat-tile .stat-label { font-size: var(--type-body-size); font-weight: 700; color: var(--color-neutral-black); }
+.stat-tile .stat-value { font-size: var(--type-body-small-size); font-weight: var(--type-body-small-weight); }
+
+.plant-description { margin-top: 20px; color: var(--color-neutral-black); line-height: 1.7; font-size: var(--type-body-size); text-align: center; }
+
+.section-label {
+  position: relative;
+  display: inline-block;
+  margin-top: 24px;
+  padding: 4px 6px;
+  color: var(--color-primary-dark-green);
+  font-weight: 600;
+  z-index: 0;
+}
+.section-label::before {
+  content: "";
+  position: absolute;
+  inset-inline: -6px;
+  bottom: 1px;
+  height: 65%;
+  background: var(--color-primary-orange-20);
+  border-radius: var(--radius-none);
+  z-index: -1;
+}
+.section-label.tint-purple::before { background: var(--color-primary-purple-40); }
+
+.difficulty-slider { margin-top: 16px; display: flex; align-items: center; gap: 12px; }
+.difficulty-slider span { font-size: var(--type-body-small-size); color: var(--color-primary-dark-green); flex-shrink: 0; }
+.difficulty-slider input[type="range"] {
+  flex: 1;
+  appearance: none;
+  height: 4px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-dark-green-20);
+  pointer-events: none;
+}
+.difficulty-slider input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 20px; height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-white);
+  border: 3px solid var(--color-primary-dark-green);
+}
+.difficulty-slider input[type="range"]::-moz-range-thumb {
+  width: 20px; height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-white);
+  border: 3px solid var(--color-primary-dark-green);
+}
+
+.plant-detail-body .field-row { margin-top: 20px; }
+.plant-detail-body .btn { margin-top: 20px; }
+
+/* ---------- Open / login screen ---------- */
+.open-screen {
+  padding: 48px 24px 40px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100svh;
+}
+.open-screen .logo-img { height: 56px; width: auto; margin-bottom: 24px; }
+.open-screen .hero-img { width: 220px; height: auto; margin-bottom: 20px; }
+.open-screen h1 { font-size: var(--type-display-size); font-weight: var(--type-display-weight); color: var(--color-primary-dark-green); }
+.open-screen .lede { color: var(--color-primary-dark-green-80); margin-top: 10px; line-height: 1.6; }
+.open-screen form { width: 100%; margin-top: 28px; display: flex; flex-direction: column; gap: 14px; }
+.open-screen .forgot { font-size: var(--type-body-small-size); color: var(--color-neutral-black); text-decoration: underline; margin-top: 4px; }
+.open-screen .actions { width: 100%; margin-top: 24px; display: flex; flex-direction: column; gap: 12px; }
+
+/* ---------- Splash screen (logo animation, index.html) ---------- */
+.splash-screen {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+.splash-screen .lottie-box { width: min(78vw, 340px); aspect-ratio: 2 / 1; }
+
+@media (min-width: 480px) {
+  .app-shell { box-shadow: 0 0 40px rgba(0,0,0,0.08); min-height: 100vh; }
+}
+
+/* ---------- Top bar: close (X) variant - used on profile / menu ---------- */
+.top-bar.center-logo .top-bar-btn.close { position: absolute; inset-inline-end: 12px; }
+
+/* ---------- Profile screen ---------- */
+.profile-header { text-align: center; padding: 28px 20px 4px; }
+.profile-avatar {
+  width: 128px;
+  height: 128px;
+  margin: 0 auto 14px;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-white);
+  box-shadow: var(--shadow-card);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.profile-header h1 { font-size: var(--type-display-size); font-weight: var(--type-display-weight); color: var(--color-primary-dark-green); }
+
+.profile-stats {
+  display: flex;
+  gap: 14px;
+  padding: 22px 20px 4px;
+  justify-content: center;
+}
+.stat-card {
+  flex: 1 1 0;
+  max-width: 170px;
+  background: var(--color-primary-lime-green-20);
+  border-radius: 16px;
+  box-shadow: var(--shadow-card);
+  padding: 18px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  text-align: center;
+}
+.stat-card .stat-number { font-size: var(--type-display-size); font-weight: var(--type-display-weight); color: var(--color-neutral-black); }
+.stat-card .stat-caption { font-size: var(--type-body-size); color: var(--color-neutral-black); line-height: 1.3; }
+
+.social-row { display: flex; justify-content: center; align-items: center; gap: 26px; padding: 32px 20px; }
+.social-row a { color: var(--color-primary-dark-green); display: inline-flex; }
+.social-row .icon { width: 34px; height: 34px; }
+
+/* ---------- Profile: watering-reminder toggle ---------- */
+.profile-toggle-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px 20px 4px;
+}
+.toggle-switch {
+  flex-shrink: 0;
+  width: 44px;
+  height: 26px;
+  padding: 3px;
+  border: none;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-light-gray);
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background 200ms ease;
+}
+.toggle-switch.is-on { background: var(--color-primary-dark-green); }
+.toggle-knob {
+  width: 20px;
+  height: 20px;
+  border-radius: var(--radius-full);
+  background: var(--color-neutral-white);
+  box-shadow: var(--shadow-card);
+  transition: transform 200ms ease;
+}
+.toggle-switch.is-on .toggle-knob { transform: translateX(-18px); }
+.toggle-label { font-size: var(--type-body-size); color: var(--color-neutral-black); }
+
+/* ---------- Menu drawer (slide-in overlay used from home / my-plants / plant) ---------- */
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(7, 59, 27, 0.35);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 280ms ease;
+  z-index: 40;
+}
+.menu-backdrop.is-open { opacity: 1; pointer-events: auto; }
+.menu-drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: min(84%, 380px);
+  background: var(--color-primary-cream);
+  z-index: 50;
+  transform: translateX(100%);
+  transition: transform 300ms ease;
+  box-shadow: -8px 0 28px rgba(7, 59, 27, 0.18);
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.menu-drawer.is-open { transform: translateX(0); }
+.menu-drawer-head { display: flex; justify-content: flex-end; padding: 18px 18px 0; flex-shrink: 0; }
+.menu-drawer .menu-list { padding: 16px 24px 24px; }
+.menu-drawer .social-row { margin-top: auto; padding: 24px 20px 32px; }
+
+/* ---------- Menu screen ---------- */
+.menu-list { display: flex; flex-direction: column; gap: 30px; padding: 30px 27px 36px; }
+.menu-list a,
+.menu-list .menu-item-inert,
+.menu-list .menu-item-action {
+  font-size: var(--type-h1-size);
+  color: var(--color-primary-dark-green);
+  text-align: right;
+}
+.menu-list .menu-item-inert { color: var(--color-primary-dark-green-40); }
+/* Real action button (reset "my plants"), styled to match the plain links
+   around it rather than looking like a form control. */
+.menu-list .menu-item-action {
+  font-family: inherit;
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+}

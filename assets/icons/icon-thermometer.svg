@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 24 24">
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+        stroke: #073b1b;
+        stroke-linecap: square;
+        stroke-width: 1.5px;
+      }
+    </style>
+  </defs>
+  <path class="st0" d="M12,3.5c-1.22,0-2.2.98-2.2,2.2v8.6c-1.84,1.22-2.36,3.7-1.14,5.54,1.22,1.84,3.7,2.36,5.54,1.14,1.84-1.22,2.36-3.7,1.14-5.54-.3-.45-.69-.84-1.14-1.14V5.7c0-1.22-.98-2.2-2.2-2.2h0Z"/>
+</svg>
