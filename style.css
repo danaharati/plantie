@@ -53,8 +53,13 @@
   --color-semantic-error: #F44336;
 
   /* ---------- Typography ---------- */
-  /* "Google Sans" is not a public webfont and has no Hebrew glyphs; Rubik (loaded
-     in <head>) is the working stand-in for this build - see build notes in README. */
+  /* 2026-09-14: "Google Sans" used to be a private Google-internal font with no
+     Hebrew glyphs, so every page loaded Rubik as a stand-in. Google open-sourced
+     "Google Sans" and "Google Sans Flex" in late 2025 and they are now real,
+     free Google Fonts with full Hebrew support - every page's <head> now loads
+     the real "Google Sans" alongside Rubik, so this stack picks it up
+     automatically. Rubik stays listed as the fallback (used only if the Google
+     Sans webfont ever fails to load) rather than being removed. */
   --font-family-base: "Google Sans", "Google Sans Flex", "Rubik", -apple-system, "Segoe UI", Arial, sans-serif;
 
   --type-display-size: 32px;
