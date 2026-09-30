@@ -366,11 +366,16 @@
   var plantToggleBtn = document.querySelector("[data-plant-toggle]");
   if (plantToggleBtn) {
     var currentPlantFile = window.location.pathname.split("/").pop() || "plant.html";
+    var diagnosisSection = document.querySelector("[data-diagnosis-section]");
     var updatePlantToggleBtn = function () {
       var added = isMyPlant(currentPlantFile);
       plantToggleBtn.textContent = added ? "כבר על הדף! להוריד?" : "יאללה, מכניסים למדף!";
       plantToggleBtn.classList.toggle("btn-primary", added);
       plantToggleBtn.classList.toggle("btn-lime", !added);
+      // "אבחון הבעיה" only makes sense for a plant that is actually on the
+      // shelf (its own tracked history) - stays hidden for a plant that
+      // hasn't been added yet, and appears the moment it is.
+      if (diagnosisSection) diagnosisSection.hidden = !added;
     };
     if (PLANT_DATA[currentPlantFile]) {
       updatePlantToggleBtn();
