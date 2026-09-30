@@ -476,16 +476,26 @@ h1, h2, h3, p { margin: 0; }
 .chip.chip-add { width: 40px; padding: 8px; text-align: center; }
 
 /* ---------- My plants: grid ---------- */
+/* True Pinterest-style masonry (2026-09-30): same card width, each card its
+   own natural height, and no forced row alignment. Neither plain CSS
+   option gets this right: column-count balances by estimated column
+   height (a "needs water" card, sorted first in script.js's
+   renderPlantGrid, could still land in the second column instead of the
+   top), and a row-major CSS grid forces every card in a row to match the
+   tallest one (uneven leftover gaps below the shorter card). So layout is
+   done in JS (layoutPlantMasonry in script.js): cards are positioned
+   absolutely, each one going into whichever of the 2 columns is currently
+   shortest - which also keeps the sorted "needs water" cards landing in
+   the first open slots, in both columns, exactly like real masonry. */
 .plant-grid {
-  column-count: 2;
-  column-gap: 14px;
+  position: relative;
   padding: 0 20px 24px;
 }
 .plant-card {
   border-radius: var(--radius-card-scaled);
   padding: 16px 12px 14px;
   text-align: center;
-  position: relative;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -493,16 +503,18 @@ h1, h2, h3, p { margin: 0; }
   border: none;
   background: var(--color-primary-lime-green-20);
   color: inherit;
-  break-inside: avoid;
-  margin-bottom: 14px;
-  width: 100%;
+  box-sizing: border-box;
 }
 .plant-card.needs-water { background: var(--color-primary-orange-20); }
 .plant-card[hidden] { display: none; }
 .plant-card img { width: 78%; height: auto; }
 .plant-card .plant-name { font-size: var(--type-body-size); font-weight: 600; color: var(--color-primary-dark-green); }
 .plant-card .plant-meta { font-size: var(--type-caption-size); color: var(--color-primary-dark-green-80); }
-.plant-card .badge-water { top: 10px; inset-inline-end: 10px; inset-inline-start: auto; bottom: auto; width: 26px; height: 26px; }
+.plant-card .badge-water { top: 10px; inset-inline-end: 10px; inset-inline-start: auto; bottom: auto; width: 32px; height: 32px; }
+/* Slightly bigger water-drop icon inside the my-plants grid badge only
+   (the shared .icon-sm class is used elsewhere at 18px and must stay that
+   size there). */
+.plant-card .badge-water .icon-sm { width: 22px; height: 22px; }
 
 /* ---------- Home + My plants: empty states ----------
    Shown instead of the shelf/grid when "my plants" (script.js,

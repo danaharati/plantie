@@ -215,6 +215,15 @@
     }
     grid.hidden = false;
     if (empty) empty.hidden = true;
+    // Plants that need water always float to the top of the grid, so the
+    // most urgent ones are the first thing seen on the page. Array.sort is
+    // stable in all supported browsers, so plants within each group (needs
+    // water / doesn't) keep their original relative order.
+    myPlants = myPlants.slice().sort(function (a, b) {
+      var aNeeds = PLANT_DATA[a].needsWater ? 0 : 1;
+      var bNeeds = PLANT_DATA[b].needsWater ? 0 : 1;
+      return aNeeds - bNeeds;
+    });
     grid.innerHTML = "";
     myPlants.forEach(function (target) {
       var data = PLANT_DATA[target];
@@ -225,6 +234,15 @@
       var img = document.createElement("img");
       img.src = data.img;
       img.alt = data.nameHe;
+      // Each plant photo has its own aspect ratio, which is exactly what
+      // gives the grid its Pinterest look - the card doesn't get its real
+      // height until this image loads, so re-run the masonry layout then
+      // (see layoutPlantMasonry below) instead of only right after build.
+      // "error" is also covered, so a broken/missing image still ends up
+      // with a correctly-measured (empty) image box instead of leaving
+      // every card below it positioned using a stale, too-small height.
+      img.addEventListener("load", layoutPlantMasonry);
+      img.addEventListener("error", layoutPlantMasonry);
       card.appendChild(img);
       if (data.needsWater) {
         var badge = document.createElement("span");
@@ -243,7 +261,75 @@
       card.appendChild(meta);
       grid.appendChild(card);
     });
+    layoutPlantMasonry();
   }
+
+  // ---------- My plants: Pinterest-style masonry layout for .plant-grid ----------
+  // Positions every visible .plant-card absolutely into whichever of the 2
+  // columns currently has the least height, so cards keep their own
+  // natural height (no stretching, no forced row alignment) while same-
+  // width columns pack tightly like Pinterest's grid. Because
+  // renderPlantGrid() (above) already sorts "needs water" plants first,
+  // walking the cards in that order and always dropping the next one into
+  // the shortest column means the water-needing cards are the ones that
+  // land in the first open slots - in both columns, not just one side.
+  // Re-run after: every renderPlantGrid() build, each plant image's load
+  // (a card's real height isn't known until its photo has loaded), every
+  // filter-chip click (applyFilter, below - hidden cards must drop out of
+  // the layout), and window resize (column width depends on the grid's
+  // current rendered width).
+  var MASONRY_COLUMNS = 2;
+  var MASONRY_GAP = 14;
+  function layoutPlantMasonry() {
+    var grid = document.querySelector(".plant-grid");
+    if (!grid || grid.hidden) return;
+    var cards = Array.prototype.slice.call(grid.querySelectorAll(".plant-card")).filter(function (card) {
+      return !card.hidden;
+    });
+    if (cards.length === 0) {
+      grid.style.height = "";
+      return;
+    }
+    var gridStyle = getComputedStyle(grid);
+    var paddingLeft = parseFloat(gridStyle.paddingLeft) || 0;
+    var paddingRight = parseFloat(gridStyle.paddingRight) || 0;
+    var paddingBottom = parseFloat(gridStyle.paddingBottom) || 0;
+    var availableWidth = grid.clientWidth - paddingLeft - paddingRight;
+    var columnWidth = (availableWidth - MASONRY_GAP * (MASONRY_COLUMNS - 1)) / MASONRY_COLUMNS;
+    var columnHeights = new Array(MASONRY_COLUMNS).fill(0);
+    cards.forEach(function (card) {
+      card.style.width = columnWidth + "px";
+      var col = 0;
+      for (var i = 1; i < MASONRY_COLUMNS; i++) {
+        if (columnHeights[i] < columnHeights[col]) col = i;
+      }
+      // For an absolutely positioned child, "right: 0" lands on the
+      // *padding* box's own edge - it does not get inset by the grid's
+      // own right/left padding the way normal-flow content automatically
+      // is. So that padding has to be added back in by hand here, or the
+      // whole 2-column block renders flush against the true edge (with a
+      // matching gap of empty space left over on the other side) instead
+      // of sitting centered/inset like the rest of the page.
+      // right (not left) on purpose - the whole site is RTL, so the first
+      // column reads as the rightmost one, matching every other "first
+      // item = right side" layout already established on this site.
+      card.style.right = paddingRight + col * (columnWidth + MASONRY_GAP) + "px";
+      card.style.top = columnHeights[col] + "px";
+      columnHeights[col] += card.offsetHeight + MASONRY_GAP;
+    });
+    // .plant-grid uses the site-wide box-sizing:border-box (style.css line
+    // ~125), so the height set here is measured including padding - add
+    // paddingBottom back in for the same reason as the right/left offsets
+    // above, so the grid's own bottom padding still shows up under the
+    // shortest column too.
+    var maxColumnBottom = Math.max.apply(null, columnHeights) - MASONRY_GAP;
+    grid.style.height = maxColumnBottom + paddingBottom + "px";
+  }
+  var plantMasonryResizeTimer;
+  window.addEventListener("resize", function () {
+    clearTimeout(plantMasonryResizeTimer);
+    plantMasonryResizeTimer = setTimeout(layoutPlantMasonry, 150);
+  });
 
   // ---------- Profile: stat cards (profile.html) ----------
   // The two numbers ("09 צמחים על המדף שלי" / "03 צמחים זקוקים לטיפול") used
@@ -465,6 +551,10 @@
           (filter === "water" ? card.classList.contains("needs-water") : card.getAttribute("data-location") === filter);
         card.hidden = !matches;
       });
+      // Hidden cards must drop out of the masonry packing entirely (not
+      // just visually disappear), otherwise the remaining visible cards
+      // would keep the gaps the hidden ones left behind.
+      layoutPlantMasonry();
     };
     var activateChip = function (chip) {
       chips.forEach(function (c) {
