@@ -56,23 +56,18 @@
       </div>
     </div>
 
-    <p class="plant-description">
-      פוטוס (Epipremnum aureum) הוא צמח מטפס ממשפחת הארומיים, מקורו באיי שלמה. עליו בצורת לב, ירוקים עם כתמי צהוב או לבן בזנים ססגוניים, וידוע כאחד מצמחי הבית העמידים והקלים ביותר לגידול.
-    </p>
-
     <span class="section-label">אופן הטיפול</span>
     <p class="plant-description">
       מתאים לגידול תלוי או מטפס עם תמיכה. סובל הזנחה יחסית ומעדיף תת-השקיה על פני השקיית יתר. גיזום מדי פעם מעודד צמיחה מסועפת. דישון קל בעונת הצמיחה בלבד. מומלץ לתת לאדמה להתייבש בין השקיות.
     </p>
 
-    <div class="difficulty-slider" aria-hidden="false">
-      <span>קשה</span>
-      <label class="visually-hidden" for="difficulty">רמת קושי בטיפול</label>
-      <input type="range" id="difficulty" min="1" max="10" value="9" step="1" tabindex="-1" aria-readonly="true" aria-valuetext="9 מתוך 10">
-      <span>קל</span>
+    <div class="difficulty-toggle" role="img" aria-label="רמת קושי בטיפול: למתחילים">
+      <span class="difficulty-pill is-active">למתחילים</span>
+      <span class="difficulty-pill">דורש השקעה</span>
+      <span class="difficulty-pill">למנוסים</span>
     </div>
 
-    <span class="section-label tint-purple">אבחון הבעיה</span>
+    <span class="section-label tint-green">אבחון הבעיה</span>
 
     <div class="symptom-select field-row" data-symptom-select>
       <button type="button" class="symptom-select-toggle" data-symptom-toggle aria-haspopup="listbox" aria-expanded="false" aria-controls="symptom-listbox">
@@ -85,11 +80,16 @@
         <li role="option" tabindex="-1" aria-selected="false" data-value="losing-variegation" data-explanation="חוסר אור; להעביר למקום מואר יותר.">איבוד הכתמים הססגוניים בעלים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="brown-tips" data-explanation="אוויר יבש מדי או הצטברות מלחים; להוסיף לחות ולשטוף את האדמה מדי פעם.">קצוות עלים חומים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="leggy-stems" data-explanation="חוסר אור וחוסר גיזום; להעביר למקום מואר ולגזום לעידוד התפצלות.">גבעולים מתמתחים ודלילים</li>
-        <li role="option" tabindex="-1" aria-selected="false" data-value="other">אחר</li>
+        <li role="option" tabindex="-1" aria-selected="false" data-value="other">צלם תמונה</li>
       </ul>
     </div>
 
     <p class="symptom-explanation" data-symptom-explanation hidden></p>
+
+    <span class="section-label tint-purple">על הצמח</span>
+    <p class="plant-description">
+      פוטוס (Epipremnum aureum) הוא צמח מטפס ממשפחת הארומיים, מקורו באיי שלמה. עליו בצורת לב, ירוקים עם כתמי צהוב או לבן בזנים ססגוניים, וידוע כאחד מצמחי הבית העמידים והקלים ביותר לגידול.
+    </p>
 
     <button class="btn btn-lime" type="button" data-plant-toggle>יאללה, מכניסים למדף!</button>
   </div>

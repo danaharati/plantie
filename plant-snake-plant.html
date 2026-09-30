@@ -56,23 +56,18 @@
       </div>
     </div>
 
-    <p class="plant-description">
-      סנסיווריה (Dracaena trifasciata, לשעבר Sansevieria), הידועה גם כ"לשון החותנת", היא צמח בשרני ממשפחת האספרגיים שמקורו במערב אפריקה. עליה זקופים, קשיחים ובעלי פסים ירוקים-כסופים, ונחשבת לאחד מצמחי הבית העמידים ביותר.
-    </p>
-
     <span class="section-label">אופן הטיפול</span>
     <p class="plant-description">
       מתאימה לאדמה מנוקזת היטב ולתדירות השקיה נמוכה - הסיבה השכיחה ביותר לבעיות היא השקיית יתר. עמידה בתנאי אור משתנים ואינה זקוקה ללחות אוויר גבוהה. דישון קל, אחת לחודשיים בעונת הצמיחה בלבד. מומלץ לתת לאדמה להתייבש לגמרי בין השקיות.
     </p>
 
-    <div class="difficulty-slider" aria-hidden="false">
-      <span>קשה</span>
-      <label class="visually-hidden" for="difficulty">רמת קושי בטיפול</label>
-      <input type="range" id="difficulty" min="1" max="10" value="9" step="1" tabindex="-1" aria-readonly="true" aria-valuetext="9 מתוך 10">
-      <span>קל</span>
+    <div class="difficulty-toggle" role="img" aria-label="רמת קושי בטיפול: למתחילים">
+      <span class="difficulty-pill is-active">למתחילים</span>
+      <span class="difficulty-pill">דורש השקעה</span>
+      <span class="difficulty-pill">למנוסים</span>
     </div>
 
-    <span class="section-label tint-purple">אבחון הבעיה</span>
+    <span class="section-label tint-green">אבחון הבעיה</span>
 
     <div class="symptom-select field-row" data-symptom-select>
       <button type="button" class="symptom-select-toggle" data-symptom-toggle aria-haspopup="listbox" aria-expanded="false" aria-controls="symptom-listbox">
@@ -85,11 +80,16 @@
         <li role="option" tabindex="-1" aria-selected="false" data-value="wrinkled" data-explanation="תת-השקיה ממושכת; להשקות ביסודיות ולחזור לשגרה סדירה.">עלים מתקמטים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="soft-yellow" data-explanation="השקיית יתר וניקוז לקוי; לבדוק ניקוז ולצמצם השקיה.">עלים צהובים ורכים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="falling-sideways" data-explanation="חוסר אור או עציץ קטן מדי לגודל הצמח; להעביר למקום מואר יותר או לעצב מחדש.">עלים נופלים הצידה</li>
-        <li role="option" tabindex="-1" aria-selected="false" data-value="other">אחר</li>
+        <li role="option" tabindex="-1" aria-selected="false" data-value="other">צלם תמונה</li>
       </ul>
     </div>
 
     <p class="symptom-explanation" data-symptom-explanation hidden></p>
+
+    <span class="section-label tint-purple">על הצמח</span>
+    <p class="plant-description">
+      סנסיווריה (Dracaena trifasciata, לשעבר Sansevieria), הידועה גם כ"לשון החותנת", היא צמח בשרני ממשפחת האספרגיים שמקורו במערב אפריקה. עליה זקופים, קשיחים ובעלי פסים ירוקים-כסופים, ונחשבת לאחד מצמחי הבית העמידים ביותר.
+    </p>
 
     <button class="btn btn-primary" type="button" data-plant-toggle>כבר על הדף! להוריד?</button>
   </div>

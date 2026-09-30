@@ -56,23 +56,18 @@
       </div>
     </div>
 
-    <p class="plant-description">
-      קרוטון (Codiaeum variegatum) הוא צמח ממשפחת החלביתיים, מקורו באיים הטרופיים של דרום מזרח אסיה והאוקיינוס השקט. עליו בולטים בצבעוניות עשירה - שילובים של ירוק, צהוב, כתום ואדום - ומשתנים בעוצמת האור שהצמח מקבל.
-    </p>
-
     <span class="section-label">אופן הטיפול</span>
     <p class="plant-description">
       ככל שהצמח מקבל יותר אור, כך צבעי העלים בולטים יותר. יש להימנע משינויי טמפרטורה וטיוטות, שגורמים לנשירת עלים. השקיה סדירה עם התייבשות חלקית בין השקיות ולחות אוויר בינונית-גבוהה. דישון קל בעונת הצמיחה. מומלץ לשמור על אדמה מעט לחה.
     </p>
 
-    <div class="difficulty-slider" aria-hidden="false">
-      <span>קשה</span>
-      <label class="visually-hidden" for="difficulty">רמת קושי בטיפול</label>
-      <input type="range" id="difficulty" min="1" max="10" value="4" step="1" tabindex="-1" aria-readonly="true" aria-valuetext="4 מתוך 10">
-      <span>קל</span>
+    <div class="difficulty-toggle" role="img" aria-label="רמת קושי בטיפול: דורש השקעה">
+      <span class="difficulty-pill">למתחילים</span>
+      <span class="difficulty-pill is-active">דורש השקעה</span>
+      <span class="difficulty-pill">למנוסים</span>
     </div>
 
-    <span class="section-label tint-purple">אבחון הבעיה</span>
+    <span class="section-label tint-green">אבחון הבעיה</span>
 
     <div class="symptom-select field-row" data-symptom-select>
       <button type="button" class="symptom-select-toggle" data-symptom-toggle aria-haspopup="listbox" aria-expanded="false" aria-controls="symptom-listbox">
@@ -85,11 +80,16 @@
         <li role="option" tabindex="-1" aria-selected="false" data-value="fading-colors" data-explanation="חוסר אור; להעביר למקום מואר יותר.">דהיית הצבעים בעלים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="brown-edges" data-explanation="אוויר יבש מדי או תת-השקיה; להוסיף לחות ולהקפיד על השקיה סדירה.">קצוות עלים חומים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="yellow-leaves" data-explanation="השקיית יתר; לצמצם תדירות ולוודא ניקוז תקין.">עלים צהובים</li>
-        <li role="option" tabindex="-1" aria-selected="false" data-value="other">אחר</li>
+        <li role="option" tabindex="-1" aria-selected="false" data-value="other">צלם תמונה</li>
       </ul>
     </div>
 
     <p class="symptom-explanation" data-symptom-explanation hidden></p>
+
+    <span class="section-label tint-purple">על הצמח</span>
+    <p class="plant-description">
+      קרוטון (Codiaeum variegatum) הוא צמח ממשפחת החלביתיים, מקורו באיים הטרופיים של דרום מזרח אסיה והאוקיינוס השקט. עליו בולטים בצבעוניות עשירה - שילובים של ירוק, צהוב, כתום ואדום - ומשתנים בעוצמת האור שהצמח מקבל.
+    </p>
 
     <button class="btn btn-lime" type="button" data-plant-toggle>יאללה, מכניסים למדף!</button>
   </div>

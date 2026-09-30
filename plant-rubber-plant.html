@@ -56,23 +56,18 @@
       </div>
     </div>
 
-    <p class="plant-description">
-      פיקוס גומי (Ficus elastica) הוא עץ נוי ממשפחת התותיים, מקורו בהודו ובדרום מזרח אסיה. עליו גדולים, עבים ומבריקים, בגוונים שנעים מירוק כהה ועד אדמדם-סגול בזנים מסוימים. גדל לגובה משמעותי כצמח בית.
-    </p>
-
     <span class="section-label">אופן הטיפול</span>
     <p class="plant-description">
       מיקום מואר וקבוע, ניגוב עלים מאבק לשמירה על ברק ופוטוסינתזה תקינה, והשקיה מתונה - עדיף להשקות פחות מדי מאשר יותר מדי. דישון קל בעונת הצמיחה. גיזום מעודד התפצלות. מומלץ לתת לשכבה העליונה של האדמה להתייבש.
     </p>
 
-    <div class="difficulty-slider" aria-hidden="false">
-      <span>קשה</span>
-      <label class="visually-hidden" for="difficulty">רמת קושי בטיפול</label>
-      <input type="range" id="difficulty" min="1" max="10" value="7" step="1" tabindex="-1" aria-readonly="true" aria-valuetext="7 מתוך 10">
-      <span>קל</span>
+    <div class="difficulty-toggle" role="img" aria-label="רמת קושי בטיפול: למתחילים">
+      <span class="difficulty-pill is-active">למתחילים</span>
+      <span class="difficulty-pill">דורש השקעה</span>
+      <span class="difficulty-pill">למנוסים</span>
     </div>
 
-    <span class="section-label tint-purple">אבחון הבעיה</span>
+    <span class="section-label tint-green">אבחון הבעיה</span>
 
     <div class="symptom-select field-row" data-symptom-select>
       <button type="button" class="symptom-select-toggle" data-symptom-toggle aria-haspopup="listbox" aria-expanded="false" aria-controls="symptom-listbox">
@@ -85,11 +80,16 @@
         <li role="option" tabindex="-1" aria-selected="false" data-value="brown-halo" data-explanation="עודף מים או מים בטמפרטורה קרה; להשקות במים בטמפרטורת החדר ובמידה.">כתמים חומים עם הילה צהובה</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="small-pale" data-explanation="חוסר אור או חוסר דישון; להעביר למקום מואר יותר ולדשן בעונת הצמיחה.">עלים חדשים קטנים וחיוורים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="lower-shedding" data-explanation="שינוי סביבתי (טמפרטורה/טיוטה) או תת-השקיה ממושכת; לייצב מיקום ותנאים.">נשירת עלים תחתונים</li>
-        <li role="option" tabindex="-1" aria-selected="false" data-value="other">אחר</li>
+        <li role="option" tabindex="-1" aria-selected="false" data-value="other">צלם תמונה</li>
       </ul>
     </div>
 
     <p class="symptom-explanation" data-symptom-explanation hidden></p>
+
+    <span class="section-label tint-purple">על הצמח</span>
+    <p class="plant-description">
+      פיקוס גומי (Ficus elastica) הוא עץ נוי ממשפחת התותיים, מקורו בהודו ובדרום מזרח אסיה. עליו גדולים, עבים ומבריקים, בגוונים שנעים מירוק כהה ועד אדמדם-סגול בזנים מסוימים. גדל לגובה משמעותי כצמח בית.
+    </p>
 
     <button class="btn btn-primary" type="button" data-plant-toggle>כבר על הדף! להוריד?</button>
   </div>

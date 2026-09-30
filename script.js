@@ -438,16 +438,6 @@
     });
   }
 
-  // ---------- Difficulty slider live label (plant.html) ----------
-  var difficulty = document.getElementById("difficulty");
-  if (difficulty) {
-    difficulty.addEventListener("input", function () {
-      var value = difficulty.value;
-      var word = value < 33 ? "קשה" : value < 66 ? "בינוני" : "קל";
-      difficulty.setAttribute("aria-valuetext", value + " מתוך 100, " + word);
-    });
-  }
-
   // ---------- Watering-reminder toggle (profile.html) ----------
   var toggleSwitch = document.querySelector("[data-toggle-switch]");
   if (toggleSwitch) {

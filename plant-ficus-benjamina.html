@@ -56,23 +56,18 @@
       </div>
     </div>
 
-    <p class="plant-description">
-      פיקוס בנימינה (Ficus benjamina) הוא עץ נוי ממשפחת התותיים, מקורו בדרום מזרח אסיה ואוסטרליה. עליו קטנים, מבריקים ומחודדים, וגבעוליו גמישים ומתקפלים בעדינות - נחשב לאחד מעצי הנוי הנפוצים ביותר בבתים ובמשרדים.
-    </p>
-
     <span class="section-label">אופן הטיפול</span>
     <p class="plant-description">
       רגיש מאוד לשינויים בסביבה - מיקום קבוע חשוב במיוחד. יש להימנע מהעברות תכופות, טיוטות ושינויי טמפרטורה חדים. השקיה מתונה וסדירה ודישון קל בעונת הצמיחה. מומלץ לתת לשכבה העליונה של האדמה להתייבש.
     </p>
 
-    <div class="difficulty-slider" aria-hidden="false">
-      <span>קשה</span>
-      <label class="visually-hidden" for="difficulty">רמת קושי בטיפול</label>
-      <input type="range" id="difficulty" min="1" max="10" value="4" step="1" tabindex="-1" aria-readonly="true" aria-valuetext="4 מתוך 10">
-      <span>קל</span>
+    <div class="difficulty-toggle" role="img" aria-label="רמת קושי בטיפול: דורש השקעה">
+      <span class="difficulty-pill">למתחילים</span>
+      <span class="difficulty-pill is-active">דורש השקעה</span>
+      <span class="difficulty-pill">למנוסים</span>
     </div>
 
-    <span class="section-label tint-purple">אבחון הבעיה</span>
+    <span class="section-label tint-green">אבחון הבעיה</span>
 
     <div class="symptom-select field-row" data-symptom-select>
       <button type="button" class="symptom-select-toggle" data-symptom-toggle aria-haspopup="listbox" aria-expanded="false" aria-controls="symptom-listbox">
@@ -85,11 +80,16 @@
         <li role="option" tabindex="-1" aria-selected="false" data-value="yellow-leaves" data-explanation="השקיית יתר; לצמצם תדירות ולוודא ניקוז תקין.">עלים צהובים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="brown-tips" data-explanation="אוויר יבש מדי או תת-השקיה; להוסיף לחות ולהקפיד על השקיה סדירה.">קצוות עלים חומים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="sticky-leaves-black-spots" data-explanation="מזיקים (כגון כנימות); לבדוק את הצמח ולנגב עלים עם מים וסבון עדין.">עלים דביקים או נקודות שחורות</li>
-        <li role="option" tabindex="-1" aria-selected="false" data-value="other">אחר</li>
+        <li role="option" tabindex="-1" aria-selected="false" data-value="other">צלם תמונה</li>
       </ul>
     </div>
 
     <p class="symptom-explanation" data-symptom-explanation hidden></p>
+
+    <span class="section-label tint-purple">על הצמח</span>
+    <p class="plant-description">
+      פיקוס בנימינה (Ficus benjamina) הוא עץ נוי ממשפחת התותיים, מקורו בדרום מזרח אסיה ואוסטרליה. עליו קטנים, מבריקים ומחודדים, וגבעוליו גמישים ומתקפלים בעדינות - נחשב לאחד מעצי הנוי הנפוצים ביותר בבתים ובמשרדים.
+    </p>
 
     <button class="btn btn-lime" type="button" data-plant-toggle>יאללה, מכניסים למדף!</button>
   </div>

@@ -879,34 +879,33 @@ h1, h2, h3, p { margin: 0; }
   inset-inline: -6px;
   bottom: 1px;
   height: 65%;
-  background: var(--color-primary-orange-20);
+  /* Matched directly against the Figma node for "אופן הטיפול" (2026-09-30):
+     it's color/orange/40 (#ffcaae), not orange-20 - fixed here. */
+  background: var(--color-primary-orange-40);
   border-radius: var(--radius-none);
   z-index: -1;
 }
 .section-label.tint-purple::before { background: var(--color-primary-purple-40); }
+/* "אבחון הבעיה" is color/lime-green/40 (#e4fcbd) in Figma, not purple - the
+   purple class was applied to it by mistake when the template was first
+   built; "על הצמח" is the one that's actually purple-40. */
+.section-label.tint-green::before { background: var(--color-primary-lime-green-40); }
 
-.difficulty-slider { margin-top: 16px; display: flex; align-items: center; gap: 12px; }
-.difficulty-slider span { font-size: var(--type-body-small-size); color: var(--color-primary-dark-green); flex-shrink: 0; }
-.difficulty-slider input[type="range"] {
+.difficulty-toggle { margin-top: 16px; display: flex; align-items: center; gap: 8px; }
+.difficulty-toggle .difficulty-pill {
   flex: 1;
-  appearance: none;
-  height: 4px;
+  text-align: center;
+  padding: 10px 4px;
   border-radius: var(--radius-full);
+  font-size: var(--type-body-small-size);
+  font-weight: 500;
+  color: var(--color-primary-dark-green);
   background: var(--color-primary-dark-green-20);
-  pointer-events: none;
 }
-.difficulty-slider input[type="range"]::-webkit-slider-thumb {
-  appearance: none;
-  width: 20px; height: 20px;
-  border-radius: var(--radius-full);
-  background: var(--color-neutral-white);
-  border: 3px solid var(--color-primary-dark-green);
-}
-.difficulty-slider input[type="range"]::-moz-range-thumb {
-  width: 20px; height: 20px;
-  border-radius: var(--radius-full);
-  background: var(--color-neutral-white);
-  border: 3px solid var(--color-primary-dark-green);
+.difficulty-toggle .difficulty-pill.is-active {
+  background: var(--color-primary-dark-green);
+  color: var(--color-neutral-white);
+  font-weight: 700;
 }
 
 .plant-detail-body .field-row { margin-top: 20px; }

@@ -56,23 +56,18 @@
       </div>
     </div>
 
-    <p class="plant-description">
-      סחלב פלנופסיס (Phalaenopsis) הוא סחלב אפיפיטי (גדל על עצים בטבע) ממשפחת הסחלביים, מקורו ביערות הגשם הטרופיים של דרום מזרח אסיה. פורח בפרחים גדולים ועדינים לאורך שבועות ארוכים, ושורשיו הבשרניים גדלים חלקית מעל האדמה.
-    </p>
-
     <span class="section-label">אופן הטיפול</span>
     <p class="plant-description">
       גדל בתערובת מיוחדת לסחלבים (קליפות/פרלייט) ולא באדמה רגילה, לצורך אוורור שורשים. יש להשקות בהשריה קצרה ולנקז היטב - שורשים רטובים לצמיתות נרקבים. דישון מדולל וקל בעונת הצמיחה. מומלץ לתת לתערובת להתייבש כמעט לגמרי בין השקיות.
     </p>
 
-    <div class="difficulty-slider" aria-hidden="false">
-      <span>קשה</span>
-      <label class="visually-hidden" for="difficulty">רמת קושי בטיפול</label>
-      <input type="range" id="difficulty" min="1" max="10" value="6" step="1" tabindex="-1" aria-readonly="true" aria-valuetext="6 מתוך 10">
-      <span>קל</span>
+    <div class="difficulty-toggle" role="img" aria-label="רמת קושי בטיפול: דורש השקעה">
+      <span class="difficulty-pill">למתחילים</span>
+      <span class="difficulty-pill is-active">דורש השקעה</span>
+      <span class="difficulty-pill">למנוסים</span>
     </div>
 
-    <span class="section-label tint-purple">אבחון הבעיה</span>
+    <span class="section-label tint-green">אבחון הבעיה</span>
 
     <div class="symptom-select field-row" data-symptom-select>
       <button type="button" class="symptom-select-toggle" data-symptom-toggle aria-haspopup="listbox" aria-expanded="false" aria-controls="symptom-listbox">
@@ -85,11 +80,16 @@
         <li role="option" tabindex="-1" aria-selected="false" data-value="wrinkled-leaves" data-explanation="תת-השקיה או שורשים פגועים; לבדוק את מצב השורשים ולהתאים את שגרת ההשקיה.">עלים מקומטים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="bud-drop" data-explanation="שינוי פתאומי בטמפרטורה או טיוטה; לייצב מיקום ותנאים.">נשירת ניצנים לפני פתיחה</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="yellow-lower-leaves" data-explanation="עודף שמש ישירה; להעביר למקום מוצל יותר.">עלים צהובים תחתונים כלליים</li>
-        <li role="option" tabindex="-1" aria-selected="false" data-value="other">אחר</li>
+        <li role="option" tabindex="-1" aria-selected="false" data-value="other">צלם תמונה</li>
       </ul>
     </div>
 
     <p class="symptom-explanation" data-symptom-explanation hidden></p>
+
+    <span class="section-label tint-purple">על הצמח</span>
+    <p class="plant-description">
+      סחלב פלנופסיס (Phalaenopsis) הוא סחלב אפיפיטי (גדל על עצים בטבע) ממשפחת הסחלביים, מקורו ביערות הגשם הטרופיים של דרום מזרח אסיה. פורח בפרחים גדולים ועדינים לאורך שבועות ארוכים, ושורשיו הבשרניים גדלים חלקית מעל האדמה.
+    </p>
 
     <button class="btn btn-lime" type="button" data-plant-toggle>יאללה, מכניסים למדף!</button>
   </div>

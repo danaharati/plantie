@@ -56,23 +56,18 @@
       </div>
     </div>
 
-    <p class="plant-description">
-      פיקוס כינורי (Ficus lyrata) הוא עץ נוי ממשפחת התותיים, מקורו ביערות הגשם המערביים של אפריקה. שמו ניתן לו בזכות עלים גדולים בצורת כינור, ירוקים כהים ומבריקים. בבית הוא גדל לגובה ניכר ונחשב לאחד מצמחי הנוי הפופולריים ביותר.
-    </p>
-
     <span class="section-label">אופן הטיפול</span>
     <p class="plant-description">
       מומלץ למקם ליד חלון מואר ולשמור על מיקום קבוע - הצמח רגיש להעברות תכופות. יש לסובב את העציץ מדי פעם לצמיחה אחידה, לנקות את העלים מאבק כדי לאפשר פוטוסינתזה תקינה, ולדשן קלות באביב ובקיץ. בחורף להפחית השקיה ודישון. מומלץ לתת לשכבה העליונה של האדמה להתייבש בין השקיות.
     </p>
 
-    <div class="difficulty-slider" aria-hidden="false">
-      <span>קשה</span>
-      <label class="visually-hidden" for="difficulty">רמת קושי בטיפול</label>
-      <input type="range" id="difficulty" min="1" max="10" value="4" step="1" tabindex="-1" aria-readonly="true" aria-valuetext="4 מתוך 10">
-      <span>קל</span>
+    <div class="difficulty-toggle" role="img" aria-label="רמת קושי בטיפול: דורש השקעה">
+      <span class="difficulty-pill">למתחילים</span>
+      <span class="difficulty-pill is-active">דורש השקעה</span>
+      <span class="difficulty-pill">למנוסים</span>
     </div>
 
-    <span class="section-label tint-purple">אבחון הבעיה</span>
+    <span class="section-label tint-green">אבחון הבעיה</span>
 
     <div class="symptom-select field-row" data-symptom-select>
       <button type="button" class="symptom-select-toggle" data-symptom-toggle aria-haspopup="listbox" aria-expanded="false" aria-controls="symptom-listbox">
@@ -85,11 +80,16 @@
         <li role="option" tabindex="-1" aria-selected="false" data-value="leaf-drop" data-explanation="שינוי מיקום פתאומי, טיוטה או קור; להחזיר למיקום קבוע ומואר ולהרחיק מזרמי אוויר.">נשירת עלים</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="yellow-bottom" data-explanation="השקיית יתר או ניקוז לקוי; לבדוק שהעציץ מנוקז היטב ולצמצם השקיה.">עלים צהובים בתחתית</li>
         <li role="option" tabindex="-1" aria-selected="false" data-value="dry-edges" data-explanation="אוויר יבש מדי או תת-השקיה; להוסיף לחות סביבתית ולהקפיד על השקיה סדירה.">קצוות עלים חומים ויבשים</li>
-        <li role="option" tabindex="-1" aria-selected="false" data-value="other">אחר</li>
+        <li role="option" tabindex="-1" aria-selected="false" data-value="other">צלם תמונה</li>
       </ul>
     </div>
 
     <p class="symptom-explanation" data-symptom-explanation hidden></p>
+
+    <span class="section-label tint-purple">על הצמח</span>
+    <p class="plant-description">
+      פיקוס כינורי (Ficus lyrata) הוא עץ נוי ממשפחת התותיים, מקורו ביערות הגשם המערביים של אפריקה. שמו ניתן לו בזכות עלים גדולים בצורת כינור, ירוקים כהים ומבריקים. בבית הוא גדל לגובה ניכר ונחשב לאחד מצמחי הנוי הפופולריים ביותר.
+    </p>
 
     <button class="btn btn-lime" type="button" data-plant-toggle>יאללה, מכניסים למדף!</button>
   </div>
